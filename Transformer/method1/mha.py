@@ -66,7 +66,8 @@ class MultiHeadAttention(Module):
                 query: torch.Tensor,
                 key: torch.Tensor,
                 value: torch.Tensor,
-                mask: Optional[torch.Tensor] = None):   # query, key, value的形状都是（seq_len, batch_size, d_model）seq_len, batch_size, _ = query.shape
+                mask: Optional[torch.Tensor] = None):   # query, key, value的形状都是（seq_len, batch_size, d_model）
+        seq_len, batch_size, _ = query.shape
         if mask is not None:
             mask = self.prepare_mask(mask, query.shape, key.shape)
         query = self.query(query)
